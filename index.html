@@ -673,7 +673,7 @@ function computeLayout(){
     const n = Math.max(1, d.rows.filter(r => r.from || r.to || r.fare).length);
     const pr = rowPadRatio(n);
     const need = (n * S.rowPitch) / (1 - 2*pr);
-    return Math.max(S.basePanelH, need);
+    return Math.round(Math.max(S.basePanelH, need));
   });
   const p1 = S.headerH + S.headGap;
   const p2 = p1 + heights[0] + S.gap;
@@ -718,7 +718,7 @@ function panelSVG(dir, top, h){
     const areaH = h*(1 - 2*pr);
     const pitch = areaH / n;
     const fs = S.fs.body;
-    const zhiCx = ROW_X + COL_FROM + 26;          // 「至」中心
+    const zhiCx = ROW_X + COL_FROM + COL_ZHI/2;   // 「至」居中于两栏之间，左右间距相等
     const toX = ROW_X + COL_FROM + COL_ZHI;
 
     rows.forEach((r, i) => {
